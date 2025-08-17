@@ -2,6 +2,7 @@ package io.bluebeaker.morphoverlay;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.Item;
@@ -50,6 +51,7 @@ public class MorphOverlayUtils {
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
+        GlStateManager.disableDepth();
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(OVERLAY_TEXTURES);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -58,5 +60,6 @@ public class MorphOverlayUtils {
         bufferbuilder.pos(x + width, y, z).tex((float)(textureX + width) * 0.03125F, (float)(textureY) * 0.03125F).endVertex();
         bufferbuilder.pos(x, y, z).tex((float)(textureX) * 0.03125F, (float)(textureY) * 0.03125F).endVertex();
         tessellator.draw();
+        GlStateManager.enableDepth();
     }
 }

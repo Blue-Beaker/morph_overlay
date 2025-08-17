@@ -28,7 +28,7 @@ public abstract class MixinRenderItem {
     public void renderOverlays(FontRenderer fr, ItemStack stack, int xPosition, int yPosition, String text, CallbackInfo ci){
         if(!MorphOverlayConfig.enable) return;
         if(MorphOverlayUtils.isMorphedTool(stack)){
-            MorphOverlayUtils.drawCornerIcon( xPosition, yPosition, 16,0,this.zLevel);
+            MorphOverlayUtils.drawCornerIcon(xPosition, yPosition, 16,0,this.zLevel);
         }
         if(MorphOverlayUtils.isAkashicTome(stack)){
             MorphOverlayUtils.drawCornerIcon(xPosition, yPosition, 0,0,this.zLevel);
