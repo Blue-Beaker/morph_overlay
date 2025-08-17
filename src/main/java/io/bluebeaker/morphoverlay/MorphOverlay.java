@@ -1,20 +1,19 @@
 package io.bluebeaker.morphoverlay;
 
-import org.apache.logging.log4j.Logger;
-
-import io.bluebeaker.morphoverlay.Tags;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION)
+@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION,acceptableRemoteVersions = "*",clientSideOnly = true)
 public class MorphOverlay
 {
     public static final String MODID = Tags.MOD_ID;
@@ -32,6 +31,10 @@ public class MorphOverlay
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
+    }
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+        MorphOverlayHandler.init();
     }
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event){
