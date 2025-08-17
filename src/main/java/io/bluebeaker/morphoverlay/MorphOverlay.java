@@ -34,7 +34,7 @@ public class MorphOverlay
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event){
-        MorphOverlayHandler.init();
+        MorphOverlayUtils.init();
     }
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event){
