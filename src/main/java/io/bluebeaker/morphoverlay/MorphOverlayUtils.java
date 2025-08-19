@@ -13,16 +13,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class MorphOverlayUtils {
     private static Item morphTool;
     private static Item akashicTome;
-    private static ItemStack morphToolStack;
-    private static ItemStack akashicTomeStack;
+    private static Item omniwand;
 
     protected static final ResourceLocation OVERLAY_TEXTURES = new ResourceLocation(MorphOverlay.MODID,"textures/gui/overlays.png");
 
     public static void init(){
         morphTool = ForgeRegistries.ITEMS.getValue(new ResourceLocation("morphtool:tool"));
         akashicTome = ForgeRegistries.ITEMS.getValue(new ResourceLocation("akashictome:tome"));
-        morphToolStack=new ItemStack(morphTool);
-        akashicTomeStack = new ItemStack(akashicTome);
+        omniwand = ForgeRegistries.ITEMS.getValue(new ResourceLocation("omniwand:wand"));
     }
     public static boolean isMorphedTool(ItemStack stack){
         if(morphTool==null || stack.getItem()==morphTool || stack.isEmpty() || stack.getTagCompound()==null){
@@ -36,13 +34,11 @@ public class MorphOverlayUtils {
         }
         return (stack.hasTagCompound() && stack.getTagCompound().getBoolean("akashictome:is_morphing"));
     }
-
-    public static ItemStack getMorphToolStack() {
-        return morphToolStack;
-    }
-
-    public static ItemStack getAkashicTomeStack() {
-        return akashicTomeStack;
+    public static boolean isMorphedOmniwand(ItemStack stack){
+        if(omniwand==null || stack.getItem()==omniwand || stack.isEmpty() || stack.getTagCompound()==null){
+            return false;
+        }
+        return stack.hasTagCompound() && stack.getTagCompound().getBoolean("omniwand:transforming");
     }
 
     public static void drawCornerIcon(float x, float y, int textureX, int textureY, float z) {

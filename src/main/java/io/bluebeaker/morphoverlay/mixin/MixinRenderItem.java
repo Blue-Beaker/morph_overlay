@@ -33,6 +33,9 @@ public abstract class MixinRenderItem {
         if(MorphOverlayUtils.isAkashicTome(stack)){
             MorphOverlayUtils.drawCornerIcon(xPosition, yPosition, 0,0,this.zLevel);
         }
+        if(MorphOverlayUtils.isMorphedOmniwand(stack)){
+            MorphOverlayUtils.drawCornerIcon(xPosition, yPosition, 0,16,this.zLevel);
+        }
     }
 
 }
